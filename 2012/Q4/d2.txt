@@ -1,0 +1,22 @@
+<?php
+foreach ($inputs as $i => $iTerm) {
+    $intCi  = $i + 1;
+    $iTerm  = array_map(intval, explode(' ', $iTerm));
+    $magRst = array();
+    $count  = 0;
+    if ($iTerm[1] > 9) {
+        $intCountPsb = count($arrIntAllPsb = range($iTerm[0], $iTerm[1]));
+        for ($i = 0; $i < $intCountPsb; $i++) {
+            $strN = $strM = $arrIntAllPsb[$i];
+            $intLen = strlen("{$arrIntAllPsb[$i]}");
+            for ($j = 0; $j < $intLen; $j++) {
+                $strM = intval(substr($strM, -1)) . substr($strM, 0, $intLen - 1);
+                if ($strM <= $iTerm[1] and $strM > $strN and $strM >= $iTerm[0]) {
+                    $magRst["#{$strN}{$strM}"] = 1;
+                }
+            }
+        }
+    }
+    intRs = count($magRst);
+    echo "Case #{$intCi}: {$intRs}\n";
+}
